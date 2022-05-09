@@ -13,36 +13,33 @@ root.title("Pig Game")
 
 computer_points = 0
 a_dice_merge = 0
+Aplay_total = 0
 
 # ---------구동 함수------------
+def choose_keep_playing():
+    return random.randrange(1, 3)
+
+
 def game_computer(computer_points):
   while(computer_points<=100):
-    choose = random.randrange(1, 3)  
     
-    if choose == 1:
-      print('컴퓨터는 도박을 합니다.')
-    else:
-      print('컴퓨터는 도박을 하지 않습니다')
-      break
-      
     value = dice()
-    print(f'컴퓨터가 뽑은 숫자: {value}')
+    #print(f'컴퓨터가 뽑은 숫자: {value}')
     
     if(value==1):
       computer_points = 0
-      print('컴퓨터의 점수가 초기화되었습니다. Greedy')
-      break
+
+      return computer_points, 1 # reset Computer's score
     elif(computer_points>=100):
-      print(f'컴퓨터가 승리하였습니다. {computer_points}')
-      break
+      return computer_points, 2 # Computer win this game
     else:
       computer_points += value
-      print(f'컴퓨터의 현재 점수: {computer_points} 점')
-
+      return computer_points, 3
 
 def add_dice():
     number = dice()
     Play_A_Score_list_file.insert(END, number)
+
 
 # -----------버튼 함수-------------
 # 폴더 선택
@@ -52,10 +49,11 @@ def dice():
 
 # 비교 버튼
 def stop():
-    a_dice_merge = a_dice_merge
-    A_Player_score.config(text= "A Player Score : " + str(a_dice_merge) )
-
-
+    total = Aplay_total
+    total = sum(Play_A_Score_list_file.get(0,END))
+    A_Player_score.config(text= "A Player Score : " + str(total))
+    game_computer()
+    
 # 시작
 def start():    
     pass
@@ -65,8 +63,8 @@ def start():
 file_frame = Frame(root)
 file_frame.pack(fill= "x", padx=5, pady=5 ) #가로로 넓게
 
-btn_add_file = Button(file_frame, padx=5, pady=5, width=12, text="주사위를 굴린다", command=add_dice)
-btn_add_file.pack(side="left")
+roll_dice = Button(file_frame, padx=5, pady=5, width=12, text="주사위를 굴린다", command=add_dice)
+roll_dice.pack(side="left")
 
 btn_add_file = Button(file_frame, padx=5, pady=5, width=12, text="주사위를 멈춘다.", command=stop)
 btn_add_file.pack(side="left")
@@ -78,19 +76,19 @@ A_Player.pack(fill="both", padx=5, pady=5)
 
 
 # A player score
-A_Player_list_cframe = Frame(A_Player)
-A_Player_list_cframe.pack( fill="both")
+A_Player_list_frame = Frame(A_Player)
+A_Player_list_frame.pack( fill="both")
 
 
-A_Player_score = Label(A_Player_list_cframe)
+A_Player_score = Label(A_Player_list_frame)
 A_Player_score.pack(side="left", padx=5, pady=2)
 
 
 # Computer score
-Computer_score_list_cframe = LabelFrame(root, text="Player B Score")
-Computer_score_list_cframe.pack(fill="both", padx=5, pady=5)
+Computer_score_list_frame = LabelFrame(root, text="Player B Score")
+Computer_score_list_frame.pack(fill="both", padx=5, pady=5)
 
-Computer_score = Label(Computer_score_list_cframe)
+Computer_score = Label(Computer_score_list_frame)
 Computer_score.pack(side="left", padx=5, pady=2)
 
 
