@@ -36,9 +36,15 @@ def game_computer(computer_points):
       computer_points += value
       return computer_points, 3
 
+
 def add_dice():
     number = dice()
-    Play_A_Score_list_file.insert(END, number)
+    if number != 1:
+        Play_A_Score_list_file.insert(END, number)
+    else:
+        string = 'Player turn is over'
+        Play_A_Score_list_file.insert(END, string)
+
 
 
 # -----------버튼 함수-------------
@@ -53,7 +59,7 @@ def stop():
     total = sum(Play_A_Score_list_file.get(0,END))
     A_Player_score.config(text= "A Player Score : " + str(total))
     game_computer()
-    
+
 # 시작
 def start():    
     pass
@@ -65,6 +71,7 @@ file_frame.pack(fill= "x", padx=5, pady=5 ) #가로로 넓게
 
 roll_dice = Button(file_frame, padx=5, pady=5, width=12, text="주사위를 굴린다", command=add_dice)
 roll_dice.pack(side="left")
+
 
 btn_add_file = Button(file_frame, padx=5, pady=5, width=12, text="주사위를 멈춘다.", command=stop)
 btn_add_file.pack(side="left")
@@ -80,8 +87,11 @@ A_Player_list_frame = Frame(A_Player)
 A_Player_list_frame.pack( fill="both")
 
 
-A_Player_score = Label(A_Player_list_frame)
+A_Player_score = Label(A_Player_list_frame, text= "A Player Score : ")
 A_Player_score.pack(side="left", padx=5, pady=2)
+
+temp_A_Player_score = Label(A_Player_list_frame, text= "Temp Player Score : ")
+temp_A_Player_score.pack(side="left", padx=5, pady=2)
 
 
 # Computer score
