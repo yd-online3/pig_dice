@@ -2,7 +2,11 @@
 
 ## R&R
 GUI: 최호준
-INPUT: 이성혁
-DEF: 한세진
 
-CODE REVIEW & CODE MERGE: 박찬수, 정인식 
+INPUT: 이성혁
+
+Player DEF: 한세진
+
+Computer DEF: 정인식
+
+Judge: 박찬수
