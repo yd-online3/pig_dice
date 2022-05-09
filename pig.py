@@ -35,7 +35,7 @@ def game_computer(computer_points):
     else:
       computer_points += value
       return computer_points, 3
-
+  
 
 def add_dice():
     number = dice()
