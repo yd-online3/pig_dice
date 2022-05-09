@@ -7,7 +7,7 @@ from tkinter import *
 from tkinter import filedialog # 서브 모듈은 따로 import를 해줘야 사용가능
 from PIL import Image #pip install pillow
 
-
+ 
 root = Tk()
 root.title("Pig Game")
 
