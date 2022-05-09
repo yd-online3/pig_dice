@@ -12,6 +12,7 @@ root = Tk()
 root.title("Pig Game")
 
 computer_points = 0
+a_dice_merge = 0
 
 # ---------구동 함수------------
 def game_computer(computer_points):
@@ -42,9 +43,8 @@ def game_computer(computer_points):
 
 
 def add_dice():
-    dir = dice()
-    A_Player_score.config(text= "A Player Score : " + str(dir) )
-    list_file.insert(END, dir)
+    number = dice()
+    list_file.insert(END, number)
 
 # -----------버튼 함수-------------
 # 폴더 선택
@@ -53,7 +53,9 @@ def dice():
 
 # 비교 버튼
 def stop():
-    pass
+    a_dice_merge = a_dice_merge
+    A_Player_score.config(text= "A Player Score : " + str(a_dice_merge) )
+
     
 # 시작
 def start():    
