@@ -23,7 +23,7 @@ def game_computer(computer_points):
       print('컴퓨터는 도박을 합니다.')
     else:
       print('컴퓨터는 도박을 하지 않습니다')
-      break;  
+      break
       
     value = dice()
     print(f'컴퓨터가 뽑은 숫자: {value}')
@@ -31,36 +31,34 @@ def game_computer(computer_points):
     if(value==1):
       computer_points = 0
       print('컴퓨터의 점수가 초기화되었습니다. Greedy')
-      break;
+      break
     elif(computer_points>=100):
       print(f'컴퓨터가 승리하였습니다. {computer_points}')
-      break;
+      break
     else:
       computer_points += value
       print(f'컴퓨터의 현재 점수: {computer_points} 점')
 
 
-
-
 def add_dice():
     number = dice()
-    list_file.insert(END, number)
+    Play_A_Score_list_file.insert(END, number)
 
 # -----------버튼 함수-------------
 # 폴더 선택
 def dice():
     return random.randrange(1, 7)
 
+
 # 비교 버튼
 def stop():
     a_dice_merge = a_dice_merge
     A_Player_score.config(text= "A Player Score : " + str(a_dice_merge) )
 
-    
+
 # 시작
 def start():    
     pass
-
 
 
 # 파일 프레임 
@@ -73,36 +71,53 @@ btn_add_file.pack(side="left")
 btn_add_file = Button(file_frame, padx=5, pady=5, width=12, text="주사위를 멈춘다.", command=stop)
 btn_add_file.pack(side="left")
 
+
 # 리스트 프레임 A폴더
 A_Player = LabelFrame(root, text="Player A Score")
 A_Player.pack(fill="both", padx=5, pady=5)
 
-# A player score
-list_cframe = Frame(A_Player)
-list_cframe.pack( fill="both")
 
-A_Player_score = Label(list_cframe)
+# A player score
+A_Player_list_cframe = Frame(A_Player)
+A_Player_list_cframe.pack( fill="both")
+
+
+A_Player_score = Label(A_Player_list_cframe)
 A_Player_score.pack(side="left", padx=5, pady=2)
 
 
-# 리스트 프레임 B폴더
-Bdir = LabelFrame(root, text="Player B Score")
-Bdir.pack(fill="both", padx=5, pady=5)
+# Computer score
+Computer_score_list_cframe = LabelFrame(root, text="Player B Score")
+Computer_score_list_cframe.pack(fill="both", padx=5, pady=5)
 
-Bdir_Route = Entry(Bdir) # 한줄일때 Entry
-Bdir_Route.pack(side="left", fill="x", expand=True, padx=5, pady=5, ipady=4)
+Computer_score = Label(Computer_score_list_cframe)
+Computer_score.pack(side="left", padx=5, pady=2)
 
 
-# 리스트 프레임
-list_frame = LabelFrame(root, text="진행사항")
-list_frame.pack(fill="both", padx=5, pady=5, ipadx= 150)
+# Play_A 리스트 프레임
+Play_A_Score_list_frame = LabelFrame(root, text="Play_A")
+Play_A_Score_list_frame.pack(fill="both", padx=5, pady=5, ipadx= 150)
 
-scrollaber = Scrollbar(list_frame)
+scrollaber = Scrollbar(Play_A_Score_list_frame)
 scrollaber.pack(side="right", fill= "y")
 
-list_file = Listbox(list_frame, selectmode="extended", yscrollcommand=scrollaber.set)
-list_file.pack(side="left", fill="both", expand=True)
-scrollaber.config(command=list_file.yview)
+Play_A_Score_list_file = Listbox(Play_A_Score_list_frame, selectmode="extended", yscrollcommand=scrollaber.set)
+Play_A_Score_list_file.pack(side="left", fill="both", expand=True)
+scrollaber.config(command=Play_A_Score_list_file.yview)
+
+
+# Computer 리스트 프레임
+Computer_list_frame = LabelFrame(root, text="Computer")
+Computer_list_frame.pack(fill="both", padx=5, pady=5, ipadx= 150)
+
+scrollaber = Scrollbar(Computer_list_frame)
+scrollaber.pack(side="right", fill= "y")
+
+Computer_list_file = Listbox(Computer_list_frame, selectmode="extended", yscrollcommand=scrollaber.set)
+Computer_list_file.pack(side="left", fill="both", expand=True)
+scrollaber.config(command=Computer_list_file.yview)
+
+
 
 
 # 실행 프레임
@@ -117,3 +132,4 @@ btn_start.pack(side="right", padx=5, pady=5)
 
 root.resizable(False,False)
 root.mainloop()
+
