@@ -17,18 +17,10 @@ Aplay_total = 0
 computer_first = 0
 
 # ---------구동 함수------------
-<<<<<<< Updated upstream
 def choose_keep_playing():
     return random.randrange(0, 1)
 
 
-=======
-
-
-def choose_keep_playing():
-    return random.randrange(1, 3)      
-     
->>>>>>> Stashed changes
 def game_computer(computer_points):
   number = dice()
   temp_points = 0
@@ -39,7 +31,6 @@ def game_computer(computer_points):
     temp_points = number # Computer win this game
 
   while(computer_points<=100):
-<<<<<<< Updated upstream
 
     value = choose_keep_playing()
 
@@ -55,44 +46,6 @@ def game_computer(computer_points):
     else:
       computer_points = computer_points + temp_points # stop game
 
-=======
-      
-    value = dice()
-    #print(f'컴퓨터가 뽑은 숫자: {value}')
-    
-    if(value==1):
-      computer_points = 0
-      return computer_points, 1 # reset Computer's score
-    elif(computer_points>=100):
-      return computer_points, 2 # Computer win this game
-    else:
-      computer_points += value
-      return computer_points, 3
-           
-# def game_computer(computer_points):
-#   while(computer_points<=100):
-#     choose = random.randrange(1, 3)  
-    
-#     if choose == 1:
-#       print('컴퓨터는 도박을 합니다.')
-#     else:
-#       print('컴퓨터는 도박을 하지 않습니다')
-#       break
-      
-#     value = dice()
-#     print(f'컴퓨터가 뽑은 숫자: {value}')
-    
-#     if(value==1):
-#       computer_points = 0
-#       print('컴퓨터의 점수가 초기화되었습니다. Greedy')
-#       break
-#     elif(computer_points>=100):
-#       print(f'컴퓨터가 승리하였습니다. {computer_points}')
-#       break
-#     else:
-#       computer_points += value
-#       print(f'컴퓨터의 현재 점수: {computer_points} 점')
->>>>>>> Stashed changes
 
 
 # def game_computer():
